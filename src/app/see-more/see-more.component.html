@@ -8,7 +8,7 @@
             <button (click)="back(p.ref)"  class="btn btn-primary">
                         <span class="glyphicon glyphicon-arrow-left"></span>
                     </button>    
-                    <br>
+          
 <img [src]="p.src"/>
 <div>
         <p>
@@ -63,6 +63,9 @@
                 
                         date d'ajout: {{p.date}}
                      </p>
+                     <button class="btn btn-outline-light text-dark btn-lg" title="enregistrer changement" (click)="clicked=false;">
+                      <span class="glyphicon glyphicon-ok" ></span>
+                     </button>
 </div>
 </div>
 
@@ -80,7 +83,7 @@
                         <div class="card-img-overlay">
                           <h4 class="card-title">supprimer article</h4>
                           <p class="card-text">plus besoin de cet article ?</p>
-                          <a  class="btn btn-primary" [hidden]="!seen">supprimer</a>
+                          <a (click)="back(p.ref);deleted();" class="btn btn-primary" [hidden]="!seen">supprimer</a>
                         </div>
                       </div>
                   </div>

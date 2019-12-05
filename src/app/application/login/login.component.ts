@@ -11,7 +11,14 @@ export class LoginComponent implements OnInit {
   signForm:FormGroup;
   constructor(private router:Router,private formBuilder:FormBuilder) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.signForm= this.formBuilder.group(
+      {
+      mail: ['', Validators.required],
+      mdp: ['', Validators.required]
+      }
+      )
+  }
   
     app()
     {

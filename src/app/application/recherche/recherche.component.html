@@ -13,7 +13,6 @@
                         <option [ngValue]="1">makeup</option>
                         <option [ngValue]="2">dress</option>
                     </select>
-                    {{type.value}}
                 </div>
           <hr/>
         
@@ -47,7 +46,7 @@
                 
                     
                 
-        <button id="b1" type="submit" (click)="recherche()" class="btn btn-outline-light text-light btn-lg">
+        <button id="b1" (click)="recherche()" class="btn btn-outline-light text-light btn-lg">
                 <span class="glyphicon glyphicon-search"></span>
                 </button>
     </form>
@@ -57,7 +56,7 @@
     <div [hidden] ="!submitted">
         <ul class="list-group list-group-horizontal">
            
-            <li *ngFor="let a of maq" [ngClass]="['list-group-item', 'zoom']" >
+            <li *ngFor="let a of all" [ngClass]="['list-group-item', 'zoom']" >
                  <div id="s"[hidden]="!a.promo">30%</div>
                 <div>
                     <img [src]="a.src"/>
@@ -88,41 +87,8 @@
             </li>
         
         </ul>
-        <ul class="list-group list-group-horizontal">
-           
-            <li *ngFor="let a of dre" [ngClass]="['list-group-item', 'zoom']" >
-                 <div id="s" [hidden]="!a.promo">30%</div>
-                <div>
-                    <img [src]="a.src"/>
-                    
-                    <h3>{{a.nom |uppercase}}</h3>
-                    <p>
-                        
-                       reference: {{a.ref}}
-                    </p>
-                    <hr/>
-                    <div [hidden]="a.promo">
-                          <h3 style="color:purple;">{{a.prix |cush}}</h3>
-                          </div>
-                    <div [hidden]="!a.promo">
-                    <h3 style="color:purple;">{{a.prix |promo |cush}}</h3>
-                    <h4 ><del> {{a.prix |cush}}</del> </h4>
-                    </div>
-                    
-                    <div class="only-show-on-hover">
-                       <hr/>
-                          <button class="btn btn-outline-light text-secondary btn-lg" title="voir plus">
-                           <a [routerLink]="['/dress',a.ref]">
-                             <span class="glyphicon glyphicon-option-horizontal"></span>
-                          </a>
-                       </button>
-                    </div>
-                    </div>
-            </li>
         
-        </ul>
-        
-        <button (click)="submitted =false; f.reset()" class="btn btn-primary">
+        <button (click)="submitted =false; productForm.reset()" class="btn btn-primary">
             <span class="glyphicon glyphicon-arrow-left"></span>
         </button>
     </div> 

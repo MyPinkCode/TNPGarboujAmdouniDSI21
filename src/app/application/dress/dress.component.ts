@@ -12,7 +12,7 @@ export class DressComponent implements OnInit {
 
   ngOnInit() {
 this.dre = this.produitService.dress;
-console.log(this.dre.length);
+
   }
 
 }

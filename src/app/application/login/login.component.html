@@ -5,13 +5,13 @@
 
         <div class="input-group" *ngIf="!loged">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-          <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+          <input type="email" id="inputEmail" class="form-control"formControlName="mail" placeholder="Email address" required>
           
         </div>
 
         <div class="input-group" *ngIf="!loged">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-          <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+          <input type="password" id="inputPassword" class="form-control"formControlName="mdp" placeholder="Password" required>
           
         </div>
 

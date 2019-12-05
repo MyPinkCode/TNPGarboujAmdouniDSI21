@@ -48,9 +48,9 @@ export class AjoutComponent implements OnInit {
   {
     this.submitted =true;
     if(this.type.value==1)
-     this.ajout = this.produitService.addMakeup(this.nom.value,this.ref.value,this.src.value,this.prix.value,this.promo.value,this.myDate);
+     this.ajout = this.produitService.addMakeup(this.nom.value,this.ref.value,this.src.value.replace("C:\\fakepath\\", "../assets/"),this.prix.value,this.promo.value,this.myDate);
      else 
-     this.ajout = this.produitService.addDress(this.nom.value,this.ref.value,this.src.value,this.prix.value,this.promo.value,this.myDate);
+     this.ajout = this.produitService.addDress(this.nom.value,this.ref.value,this.src.value.replace("C:\\fakepath\\", "../assets/"),this.prix.value,this.promo.value,this.myDate);
     if(this.ajout)
       this.message="Votre nouveau produit:" +this.nom.value + " a bien été ajouté";
     else

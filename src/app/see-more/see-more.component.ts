@@ -28,4 +28,7 @@ export class SeeMoreComponent implements OnInit {
     else 
     this.router.navigate(['./makeup']);
   }
+  deleted(){
+    this.produitService.supprimer(this.p.ref);
+  }
 }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Produits } from './produits';
-
+import {Validators,AbstractControl} from '@angular/forms';
 @Injectable({
   providedIn: 'root'
 })
@@ -56,6 +56,26 @@ export class ProduitService {
       }    
       return false;
   }
+  
+  public supprimer(ref:string){
+    if(this.getMakeupByID(ref)!=null){
+      {for(let i=0;i<this.makeup.length;i++){
+        if (ref==this.makeup[i].ref){
+          this.makeup.splice(i,1);
+        }
+      }
+  }
+}
+else{
+  {for(let i=0;i<this.dress.length;i++){
+    if (ref==this.dress[i].ref){
+      this.dress.splice(i,1); }
+  }
+}
+}
+  }
+
+
  constructor() { }
 
 }

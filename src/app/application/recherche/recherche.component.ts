@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup,FormBuilder,Validators} from '@angular/forms';
 import { ProduitService } from '../produit.service';
+import { Produits } from '../produits';
 @Component({
   selector: 'app-recherche',
   templateUrl: './recherche.component.html',
@@ -9,8 +10,10 @@ import { ProduitService } from '../produit.service';
 export class RechercheComponent implements OnInit {
   submitted:boolean = false;
   productForm:FormGroup;
- maq :any;
-  dre :any;
+  all:Produits[];
+  show:boolean;
+  maq:any;
+  dre:any;
   onSubmit()
   {
     this.submitted =true;}
@@ -19,6 +22,7 @@ export class RechercheComponent implements OnInit {
   ngOnInit() {
     this.dre = this.produitService.dress;
     this.maq = this.produitService.makeup;
+    this.all=this.dre.concat(this.maq);
     this.productForm = this.formBuilder.group(
       {
       type:['', Validators.required],
@@ -27,6 +31,7 @@ export class RechercheComponent implements OnInit {
       promo:['', Validators.required]
     }
       )
+      console.log(this.all.length);
   }
 
   public get nom()
@@ -40,12 +45,40 @@ export class RechercheComponent implements OnInit {
   public get type()
   { return this.productForm.controls.type; }
   
-recherche(){
-  if(this.type.value==1){
-  this.dre=null;
-  this.maq = this.produitService.makeup;}
-  if(this.type.value==2) {
-  this.maq=null;
-  this.dre = this.produitService.dress;}
-}
+  recherche(){
+    this.submitted=true;
+
+    for(let a of this.maq){
+      var test:boolean=true;
+     if(this.type==undefined){
+       if(this.type.value!=1) test=false;
+     }
+     if(this.prix!=undefined){
+      if(this.prix.value>=a.prix) test=false;
+    }
+    if(this.promo!=undefined){
+      if(this.promo.value==a.promo) test=false;
+    }
+    if(this.nom!=undefined){
+      if(a.nom.includes(this.nom.value)) test=false;
+    }
+    if(test==true) this.all.splice(this.all.findIndex((element) => element.ref==a.ref),1);
+    }
+    for(let a of this.dre){
+      var test:boolean=true;
+      if(this.type==undefined){
+        if(this.type.value!=1) test=false;
+      }
+      if(this.prix!=undefined){
+       if(this.prix.value>=a.prix) test=false;
+     }
+     if(this.promo!=undefined){
+       if(this.promo.value==a.promo) test=false;
+     }
+     if(this.nom!=undefined){
+       if(a.nom.includes(this.nom.value)) test=false;
+     }
+     if(test==true) this.all.splice(this.all.findIndex((element) => element.ref==a.ref),1);
+     }
+  }
 }

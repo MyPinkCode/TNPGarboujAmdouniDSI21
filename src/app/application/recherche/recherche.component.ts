@@ -14,6 +14,9 @@ export class RechercheComponent implements OnInit {
   show:boolean;
   maq:any;
   dre:any;
+  
+
+
   onSubmit()
   {
     this.submitted =true;}

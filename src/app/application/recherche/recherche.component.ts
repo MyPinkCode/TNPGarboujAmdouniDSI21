@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup,FormBuilder,Validators} from '@angular/forms';
 import { ProduitService } from '../produit.service';
 import { Produits } from '../produits';
+import { element } from 'protractor';
+
 @Component({
   selector: 'app-recherche',
   templateUrl: './recherche.component.html',
@@ -25,7 +27,7 @@ export class RechercheComponent implements OnInit {
   ngOnInit() {
     this.dre = this.produitService.dress;
     this.maq = this.produitService.makeup;
-    this.all=this.dre.concat(this.maq);
+    
     this.productForm = this.formBuilder.group(
       {
       type:['', Validators.required],
@@ -34,7 +36,7 @@ export class RechercheComponent implements OnInit {
       promo:['', Validators.required]
     }
       )
-      console.log(this.all.length);
+     
   }
 
   public get nom()
@@ -48,9 +50,9 @@ export class RechercheComponent implements OnInit {
   public get type()
   { return this.productForm.controls.type; }
   
-  recherche(){
+  rechercheNom(t:number){
     this.submitted=true;
-
+/*
     for(let a of this.maq){
       var test:boolean=true;
      if(this.type==undefined){
@@ -70,7 +72,7 @@ export class RechercheComponent implements OnInit {
     for(let a of this.dre){
       var test:boolean=true;
       if(this.type==undefined){
-        if(this.type.value!=1) test=false;
+        if(this.type.value!=2) test=false;
       }
       if(this.prix!=undefined){
        if(this.prix.value>=a.prix) test=false;
@@ -82,6 +84,44 @@ export class RechercheComponent implements OnInit {
        if(a.nom.includes(this.nom.value)) test=false;
      }
      if(test==true) this.all.splice(this.all.findIndex((element) => element.ref==a.ref),1);
-     }
+     }*/
+     switch (t) {
+      case 1:{this.all=this.maq.filter(Produits => Produits.nom.includes(this.nom.value))}break;
+      case 2:{this.all=this.dre.filter(Produits => Produits.nom.includes(this.nom.value));}break;
+      default:this.all=this.dre.concat(this.maq);break;
+    }
+      
   }
-}
+  recherchePrix(t:number){
+    this.submitted=true;
+
+    switch (t) {
+      case 1:{this.all=this.maq.filter(Produits => Produits.prix<=this.prix.value);}break;
+      case 2:{this.all=this.dre.filter(Produits => Produits.prix<=this.prix.value);}break;
+      default:this.all=this.dre.concat(this.maq);break;
+    }
+   
+    
+
+
+  }
+  rechercheSolde(t:number){
+    this.submitted=true;
+
+    switch (t) {
+      case 1:{this.all=this.maq.filter(Produits => Produits.promo==this.promo.value);}break;
+      case 2:{this.all=this.dre.filter(Produits => Produits.promo==this.promo.value);}break;
+      default:this.all=this.dre.concat(this.maq);break;
+    }
+    
+     
+    
+
+    }
+  showAll(){
+    this.submitted=true;
+    this.all=this.dre.concat(this.maq);
+  }
+  }
+ 
+  

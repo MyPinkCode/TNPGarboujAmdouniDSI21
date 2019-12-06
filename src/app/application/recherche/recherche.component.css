@@ -2,11 +2,8 @@ h1{
     font-family: 'Courier New', Courier, monospace;
     text-decoration:underline;
 }
-#my{height: 300px;width: 300px;border-radius: 100%;
-  border:solid 3px plum;position: absolute;top:300px;left:700px
-}
-#for{
-  margin-left: 300px;
+.for{
+  margin-left: 100px;
   max-width: 250px;
   border: 1px solid gray;
   padding: 40px;
@@ -40,3 +37,5 @@ input{border: 1px solid gray;
       margin-left: 50px;margin-top:10px ;}
       img{max-width: 200px;max-height: 300px;}
       ul{flex-wrap: wrap;}
+
+  form div {display :inline-block}

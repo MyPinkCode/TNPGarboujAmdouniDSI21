@@ -5,7 +5,7 @@ import {Validators,AbstractControl} from '@angular/forms';
   providedIn: 'root'
 })
 export class ProduitService {
- 
+ locked:boolean;
   makeup =[
     new Produits('ROUGE À LÈVRES','e7f8','../assets/rouge.PNG', 20,false,'10/11/2019'),
     new Produits('LIP CREAM','ec18','../assets/lip_cream.PNG',12.5,true,'10/11/2019'),

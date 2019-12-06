@@ -1,11 +1,11 @@
- <div id="cont">
+
+l;lllll;;<div id="cont">
 <h1>RECHERCHE</h1>
 <hr/>
-<div  [hidden] ="submitted" id="for">
+
     
     <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
-
-            <div class="form-group">
+            <div [hidden] ="submitted" class="form-group" style="float:left">
                     <label for="type">
                         categorie
                         </label><br>
@@ -14,6 +14,8 @@
                         <option [ngValue]="2">dress</option>
                     </select>
                 </div>
+            <div  [hidden] ="submitted" class="for">
+                    <h1>NOM</h1>
           <hr/>
         
         <div class="form-group">
@@ -22,41 +24,64 @@
                 </label>
                 <br>
                 <input type="text" id="libelle"class="form-control" formControlName="nom" placeholder="nom ...">
-           {{nom.value}} </div>
-
-         <hr/>
-         
-         <div class="form-group">
-                <label for="prix">
-                    prix du produit
-                </label><br>
-                <input type="number" id="prix" class="form-control" formControlName="prix" placeholder="prix ..." >
-            </div>
-               
-            <hr/>
-            <div class="form-group">
-                    <label for="solde">
-                        le produit est il solde
-                    </label><br>
-                    <select id="solde" class="form-control" formControlName="promo" >
-                        <option [ngValue]="true">solde de 30%</option>
-                        <option [ngValue]="false">non solde</option>
-                    </select>
-                </div>
+    
+         </div>
                 
                     
                 
-        <button id="b1" (click)="recherche()" class="btn btn-outline-light text-light btn-lg">
+        <button id="b1" (click)="rechercheNom(type.value)" class="btn btn-outline-light text-light btn-lg">
                 <span class="glyphicon glyphicon-search"></span>
                 </button>
+            </div>
+            <div  [hidden] ="submitted" class="for">
+                    <h1>PRIX</h1>
+                   
+                  <hr/>
+                
+            
+                 
+                 <div class="form-group">
+                        <label for="prix">
+                            prix du produit
+                        </label><br>
+                        <input type="number" id="prix" class="form-control" formControlName="prix" placeholder="prix ..." >
+                    </div>
+                   
+                            
+                        
+                <button id="b1" (click)="recherchePrix(type.value)" class="btn btn-outline-light text-light btn-lg">
+                        <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                    </div>
+
+                    <div  [hidden] ="submitted" class="for">
+                            <h1>SOLDE</h1>
+                          <hr/>
+                            <div class="form-group">
+                                    <label for="solde">
+                                        le produit est il solde
+                                    </label><br>
+                                    <select id="solde" class="form-control" formControlName="promo" >
+                                        <option [ngValue]="true">solde de 30%</option>
+                                        <option [ngValue]="false">non solde</option>
+                                    </select>
+                                </div>
+                                
+                                    
+                                
+                        <button id="b1" (click)="rechercheSolde(type.value)" class="btn btn-outline-light text-light btn-lg">
+                                <span class="glyphicon glyphicon-search"></span>
+                                </button>
+                            </div>
     </form>
       
-</div>
-<img src="../assets/ajout.PNG" id="my"/>
+
+
     <div [hidden] ="!submitted">
         <ul class="list-group list-group-horizontal">
            
             <li *ngFor="let a of all" [ngClass]="['list-group-item', 'zoom']" >
+                
                  <div id="s"[hidden]="!a.promo">30%</div>
                 <div>
                     <img [src]="a.src"/>
